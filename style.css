@@ -434,6 +434,76 @@ a.game-card:hover { transform: rotate(0deg) translateY(-6px); box-shadow: 8px 10
 .game-info h2 { margin: 0; font-size: 22px; }
 .game-info p { margin: 6px 0 0; font-family: var(--mono); font-size: 14px; color: var(--muted); }
 
+/* ---------- coding page ---------- */
+.sub-title { font-size: clamp(28px, 5vw, 40px); font-weight: 800; margin: 0 0 20px; letter-spacing: -0.02em; }
+
+.coding-header { text-align: center; max-width: 640px; margin: 0 auto; }
+.asterisk { color: var(--orange); }
+
+.video-card {
+  max-width: 960px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 3px solid var(--line);
+  border-radius: 24px;
+  box-shadow: 8px 8px 0 var(--orange);
+  padding: 12px;
+  transform: rotate(-1deg);
+}
+.video-card iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 14px;
+}
+
+.video-caption {
+  text-align: center;
+  font-family: var(--mono);
+  color: var(--muted);
+  margin: 24px 0 0;
+}
+
+.projects-section { padding-top: 96px; }
+.projects { display: grid; gap: 28px; }
+
+.project-card {
+  background: var(--card);
+  border: 3px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+.project-head { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.project-emoji {
+  font-size: 34px;
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  background: var(--orange-light);
+  border: 2px solid var(--line);
+  border-radius: 16px;
+}
+.project-head h3 { margin: 0; font-size: 28px; }
+.project-head .tag { background: var(--orange); }
+.project-head .tag.done { background: var(--blue-light); }
+.project-about { font-family: var(--mono); color: var(--muted); line-height: 1.6; margin: 16px 0; }
+
+.project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.project-tags span {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border: 2px solid var(--blue-light);
+  color: var(--blue-light);
+  border-radius: 999px;
+}
+
+.project-card .hero-cta { display: inline-block; }
+
 /* ---------- music page ---------- */
 .chart { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
 .chart li { animation: slide-in .4s cubic-bezier(.3, 1.4, .5, 1) backwards; animation-delay: calc(var(--i) * 40ms); }

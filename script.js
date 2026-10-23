@@ -5,7 +5,7 @@
 const INTERESTS = [
   // A sticker with `link` opens that page instead of flipping.
   { emoji: "🎧", title: "Music",  color: "var(--blue-light)",   link: "music.html", blurb: "my current top 10 →" },
-  { emoji: "💻", title: "Coding", color: "var(--orange)",       blurb: "Building random stuff on the internet — like this website." },
+  { emoji: "💻", title: "Coding", color: "var(--orange)",       link: "coding.html", blurb: "my projects →" },
   { emoji: "🎮", title: "Gaming", color: "var(--orange-light)", link: "games.html", blurb: "fave games & steam →" },
   { emoji: "🖼️", title: "Gallery", color: "var(--blue-dark)", ink: "#eef6ff", link: "gallery.html", blurb: "my art & nfts →" },
 ];
@@ -19,11 +19,18 @@ const STATUSES = [
 ];
 
 const FACTS = [
-  "I once listened to the same song 47 times in a row.",
-  "Pineapple on pizza is valid. Fight me.",
-  "My first website was literally just the word 'hi'.",
-  "Octopuses have three hearts. Not about me, just cool.",
-  "Edit the FACTS list in script.js to put your own here!",
+  "My first website was literally just the word 'hi' ✌️",
+  "This whole site's color scheme comes from my fursona.",
+  "Roblox, Crimson Desert and Marathon are my go-to games right now.",
+  "B2U by Dillon Francis & Marten Hørger is my #1 song at the moment.",
+  "Me and my friends run our own Minecraft server on a VPS.",
+  "I make art and NFTs. They live in the gallery.",
+  "Apple Music only. No Spotify in this house.",
+  "I wiped my old website completely to start fresh with this one.",
+  "This site was built together with Claude.",
+  "The little orange guy at the bottom of the page never stops walking.",
+  "You can drag the stickers around. They don't snap back.",
+  "My Steam name is rderg. Add me!",
 ];
 
 const BURST_EMOJI = ["✨", "🎉", "⭐", "💥", "💙", "🧡", "✌️"];
