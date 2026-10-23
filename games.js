@@ -10,14 +10,12 @@
 //  hours    optional, e.g. "200+ hrs"
 // ============================================================
 
-const STEAM_PROFILE = "https://steamcommunity.com/id/YOUR-STEAM-NAME";
+const STEAM_PROFILE = "https://steamcommunity.com/id/rderg/";
 
 const GAMES = [
-  { title: "Stardew Valley", steamId: 413150, hours: "120 hrs", note: "Example — swap in your own games!" },
-  { title: "Hollow Knight",  steamId: 367520, hours: "60 hrs",  note: "Bugs, but make it beautiful." },
-  { title: "Terraria",       steamId: 105600, hours: "200+ hrs" },
-  { title: "Portal 2",       steamId: 620,    note: "The cake is a lie." },
-  { title: "Minecraft",      emoji: "⛏️",     note: "Not on Steam, so it gets an emoji tile." },
+  { title: "Roblox",         emoji: "🧱" },
+  { title: "Crimson Desert", steamId: 3321460 },
+  { title: "Marathon",       steamId: 3065800 },
 ];
 
 // ============================================================
