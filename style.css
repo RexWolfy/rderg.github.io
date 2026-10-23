@@ -486,6 +486,45 @@ a.game-card:hover { transform: rotate(0deg) translateY(-6px); box-shadow: 8px 10
 }
 .footer a { color: var(--ink); font-weight: 700; }
 
+/* little orange guy walking along the footer text */
+.footer-walk {
+  position: relative;
+  display: inline-block;
+  padding-top: 40px;
+  margin: 0;
+}
+.walker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 52px;
+  height: 36px;
+  fill: #d97757;
+  animation: walk 24s linear infinite;
+}
+.walker .walker-eye { fill: var(--navy); }
+
+/* four-frame walk cycle: each frame shows for a quarter of the loop */
+.walker-frame { opacity: 0; animation: walk-frame 1.2s steps(1) infinite; }
+.walker-frame.f2 { animation-delay: -.9s; }
+.walker-frame.f3 { animation-delay: -.6s; }
+.walker-frame.f4 { animation-delay: -.3s; }
+@keyframes walk-frame {
+  0%  { opacity: 1; }
+  25% { opacity: 0; }
+}
+
+@keyframes walk {
+  0%     { left: 0; transform: scaleX(1); }
+  49.99% { left: calc(100% - 52px); transform: scaleX(1); }
+  50%    { left: calc(100% - 52px); transform: scaleX(-1); }
+  100%   { left: 0; transform: scaleX(-1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .walker-frame.f2 { opacity: 1; }
+}
+
 /* ---------- click confetti ---------- */
 .burst {
   position: fixed;
