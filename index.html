@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>rderg</title>
+  <meta name="description" content="rderg's corner of the internet.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✌️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <p class="hero-hi">yo whaddup 👋 i'm</p>
+    <h1 class="hero-name" id="heroName" aria-label="rderg">rderg</h1>
+    <p class="hero-tagline">
+      currently <span class="rotator" id="rotator">vibing</span>
+    </p>
+    <a class="hero-cta" href="#stuff">see what i'm into ↓</a>
+  </header>
+
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker">
+      <div class="ticker-track" id="tickerTrack"></div>
+    </div>
+  </div>
+
+  <main>
+    <section id="stuff" class="section">
+      <h2 class="section-title">stuff i'm into</h2>
+      <p class="section-hint">tap a sticker to flip it. on a computer you can drag them around too.</p>
+      <div class="board" id="board"></div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">random fact machine</h2>
+      <div class="fact-box">
+        <p class="fact" id="fact">press the button. you know you want to.</p>
+        <button class="fact-btn" id="factBtn">gimme a fact 🎲</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>
+      <a href="https://github.com/rderg">github</a>
+      <span aria-hidden="true">·</span>
+      made with too much caffeine
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

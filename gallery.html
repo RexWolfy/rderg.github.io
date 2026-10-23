@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>rderg · gallery</title>
+  <meta name="description" content="rderg's artworks and NFTs.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖼️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="gallery-page">
+    <a class="back-link" href="./">← back home</a>
+
+    <header class="gallery-header">
+      <h1 class="section-title">gallery</h1>
+      <p class="section-hint">stuff i made. tap anything to see it bigger.</p>
+      <div class="filters" id="filters" role="group" aria-label="Filter the gallery">
+        <button class="filter active" data-filter="all">all</button>
+        <button class="filter" data-filter="art">🎨 art</button>
+        <button class="filter" data-filter="nft">💎 nfts</button>
+      </div>
+    </header>
+
+    <div class="gallery-grid" id="galleryGrid"></div>
+    <p class="gallery-empty" id="galleryEmpty" hidden>nothing here yet… check back soon 👀</p>
+  </main>
+
+  <dialog class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+    <div class="lightbox-media" id="lightboxMedia"></div>
+    <div class="lightbox-info">
+      <span class="tag" id="lightboxTag"></span>
+      <h2 id="lightboxTitle"></h2>
+      <p id="lightboxNote"></p>
+      <a class="hero-cta" id="lightboxLink" target="_blank" rel="noopener" hidden>view it ↗</a>
+    </div>
+  </dialog>
+
+  <footer class="footer">
+    <p>
+      <a href="./">home</a>
+      <span aria-hidden="true">·</span>
+      <a href="https://github.com/rderg">github</a>
+    </p>
+  </footer>
+
+  <script src="gallery.js"></script>
+</body>
+</html>
