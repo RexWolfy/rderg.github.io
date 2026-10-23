@@ -3,10 +3,10 @@
 // ============================================================
 
 const INTERESTS = [
-  { emoji: "🎧", title: "Music",  color: "var(--blue-light)",   blurb: "Always got headphones in." },
-  { emoji: "💻", title: "Coding", color: "var(--orange)",       blurb: "Building random stuff on the internet — like this website." },
-  { emoji: "🎮", title: "Gaming", color: "var(--orange-light)", blurb: "Swap this for your favourite games." },
   // A sticker with `link` opens that page instead of flipping.
+  { emoji: "🎧", title: "Music",  color: "var(--blue-light)",   link: "music.html", blurb: "my current top 10 →" },
+  { emoji: "💻", title: "Coding", color: "var(--orange)",       blurb: "Building random stuff on the internet — like this website." },
+  { emoji: "🎮", title: "Gaming", color: "var(--orange-light)", link: "games.html", blurb: "fave games & steam →" },
   { emoji: "🖼️", title: "Gallery", color: "var(--blue-dark)", ink: "#eef6ff", link: "gallery.html", blurb: "my art & nfts →" },
 ];
 
@@ -60,7 +60,7 @@ setInterval(() => {
 }, 2200);
 
 // --- ticker (doubled so the loop is seamless) ---
-const tickerItems = INTERESTS.filter((i) => !i.link)
+const tickerItems = INTERESTS
   .map((i) => `<span>${i.emoji} ${i.title.toUpperCase()}</span>`).join("");
 document.getElementById("tickerTrack").innerHTML = tickerItems + tickerItems + tickerItems + tickerItems;
 

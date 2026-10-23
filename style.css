@@ -254,8 +254,8 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
 .fact-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--navy); }
 .fact-btn:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--navy); }
 
-/* ---------- gallery page ---------- */
-.gallery-page { padding-top: 32px; }
+/* ---------- subpages ---------- */
+.subpage { padding-top: 32px; }
 
 .back-link {
   display: inline-block;
@@ -270,7 +270,7 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
 }
 .back-link:hover { transform: translateX(-4px); }
 
-.gallery-header { padding: 56px 0 32px; }
+.subpage-header { padding: 56px 0 32px; }
 
 .filters { display: flex; flex-wrap: wrap; gap: 10px; }
 .filter {
@@ -395,6 +395,86 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
   font-size: 18px;
   font-weight: 700;
   cursor: pointer;
+}
+
+/* ---------- games page ---------- */
+.steam-btn { display: inline-block; margin-top: 8px; }
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+.game-card {
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+  background: var(--card);
+  border: 3px solid var(--line);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transform: rotate(var(--rand, 0deg));
+  transition: transform .3s cubic-bezier(.3, 1.6, .5, 1), box-shadow .2s;
+}
+a.game-card:hover { transform: rotate(0deg) translateY(-6px); box-shadow: 8px 10px 0 var(--orange); }
+
+.game-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 460 / 215;
+  object-fit: cover;
+  border-bottom: 3px solid var(--line);
+}
+.game-cover.placeholder { display: grid; font-size: 56px; }
+
+.game-info { padding: 14px 16px 18px; }
+.game-title-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.game-info h2 { margin: 0; font-size: 22px; }
+.game-info p { margin: 6px 0 0; font-family: var(--mono); font-size: 14px; color: var(--muted); }
+
+/* ---------- music page ---------- */
+.chart { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.chart li { animation: slide-in .4s cubic-bezier(.3, 1.4, .5, 1) backwards; animation-delay: calc(var(--i) * 40ms); }
+@keyframes slide-in { from { opacity: 0; transform: translateX(-24px); } }
+
+.chart-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 20px;
+  color: var(--ink);
+  background: var(--card);
+  border: 3px solid var(--line);
+  border-radius: 18px;
+}
+
+.chart-rank {
+  flex: none;
+  width: 48px;
+  font-size: 40px;
+  font-weight: 800;
+  text-align: center;
+  color: var(--blue-light);
+}
+.chart-song { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.chart-title { font-size: 20px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chart-artist { font-family: var(--mono); font-size: 14px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chart-row.podium { box-shadow: var(--shadow); }
+.chart li:nth-child(1) .chart-row { background: var(--orange); color: var(--navy); }
+.chart li:nth-child(2) .chart-row { background: var(--orange-light); color: var(--navy); }
+.chart li:nth-child(3) .chart-row { background: var(--blue-light); color: var(--navy); }
+.chart li:nth-child(-n+3) .chart-rank { color: var(--navy); }
+.chart li:nth-child(-n+3) .chart-artist { color: rgb(10 26 63 / .75); }
+.chart li:nth-child(1) .chart-row { padding-block: 22px; }
+.chart li:nth-child(1) .chart-rank { font-size: 56px; }
+.chart li:nth-child(1) .chart-title { font-size: 26px; }
+
+@media (max-width: 640px) {
+  .chart-row { gap: 12px; padding: 12px 14px; }
+  .chart-rank { width: 36px; font-size: 30px; }
+  .chart-row .tag { display: none; }
 }
 
 /* ---------- footer ---------- */
