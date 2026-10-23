@@ -43,7 +43,7 @@ function walkerSVG() {
     ${walkFrame(3, 1, B, A)}
     ${walkFrame(4, 0, [...A, ...B], [])}
     ${happyFrame()}
-    <rect class="walker-hitbox" width="13" height="9" />
+    <rect class="walker-hitbox" width="13" height="9" fill="transparent" />
   </svg>`;
 }
 
