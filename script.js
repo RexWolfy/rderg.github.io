@@ -3,37 +3,36 @@
 // ============================================================
 
 const INTERESTS = [
-  // A sticker with `link` opens that page instead of flipping.
   { emoji: "🎧", title: "Music",  color: "var(--blue-light)",   link: "music.html", blurb: "my current top 10 →" },
   { emoji: "💻", title: "Coding", color: "var(--orange)",       link: "coding.html", blurb: "my projects →" },
   { emoji: "🎮", title: "Gaming", color: "var(--orange-light)", link: "games.html", blurb: "fave games & steam →" },
-  { emoji: "🖼️", title: "Gallery", color: "var(--blue-dark)", ink: "#eef6ff", link: "gallery.html", blurb: "my art & nfts →" },
+  { emoji: "🖼️", title: "Gallery", color: "var(--blue-dark)", ink: "#eef6ff", link: "gallery.html", blurb: "images & nfts →" },
 ];
 
 const STATUSES = [
   "vibing",
   "listening to music",
-  "writing code",
+  "writing code w/ claude",
   "procrastinating",
   "probably gaming",
+  "hi",
+  "jorkin it a lil",
+  "larping",
+  "Studying",
 ];
 
 const FACTS = [
   "My first website was literally just the word 'hi' ✌️",
-  "This whole site's color scheme comes from my fursona.",
   "Roblox, Crimson Desert and Marathon are my go-to games right now.",
-  "B2U by Dillon Francis & Marten Hørger is my #1 song at the moment.",
-  "Me and my friends run our own Minecraft server on a VPS.",
-  "I make art and NFTs. They live in the gallery.",
   "Apple Music only. No Spotify in this house.",
-  "I wiped my old website completely to start fresh with this one.",
+  "I wiped my old website completely to start fresh with this one. (claude did that too 🫥)",
   "This site was built together with Claude.",
   "The little orange guy at the bottom of the page never stops walking.",
-  "You can drag the stickers around. They don't snap back.",
   "My Steam name is rderg. Add me!",
+  "Currently studying Physics @ TUM"
 ];
 
-const BURST_EMOJI = ["✨", "🎉", "⭐", "💥", "💙", "🧡", "✌️"];
+const BURST_EMOJI = ["✨", "💙", "🧡", "😸", "🐲"];
 
 // ============================================================
 //  The fun stuff below — no need to touch it.
@@ -71,93 +70,25 @@ const tickerItems = INTERESTS
   .map((i) => `<span>${i.emoji} ${i.title.toUpperCase()}</span>`).join("");
 document.getElementById("tickerTrack").innerHTML = tickerItems + tickerItems + tickerItems + tickerItems;
 
-// --- sticker board ---
+// --- sticker board (each sticker opens its page) ---
 const board = document.getElementById("board");
 INTERESTS.forEach((item) => {
-  const el = document.createElement(item.link ? "a" : "div");
-  el.className = "sticker";
+  const el = document.createElement("a");
+  el.className = "sticker sticker-link";
+  el.href = item.link;
   el.style.setProperty("--accent", item.color);
   if (item.ink) el.style.setProperty("--accent-ink", item.ink);
   el.style.setProperty("--rand", `${(Math.random() * 10 - 5).toFixed(1)}deg`);
-
-  if (item.link) {
-    el.href = item.link;
-    el.draggable = false;
-    el.classList.add("sticker-link");
-    el.innerHTML = `
-      <div class="sticker-inner">
-        <div class="sticker-face sticker-front">
-          <div class="sticker-emoji">${item.emoji}</div>
-          <p class="sticker-title">${item.title}</p>
-          <p class="sticker-sub">${item.blurb}</p>
-        </div>
-      </div>`;
-  } else {
-    el.tabIndex = 0;
-    el.setAttribute("role", "button");
-    el.setAttribute("aria-label", `${item.title} — flip for details`);
-    el.innerHTML = `
-      <div class="sticker-inner">
-        <div class="sticker-face sticker-front">
-          <div class="sticker-emoji">${item.emoji}</div>
-          <p class="sticker-title">${item.title}</p>
-        </div>
-        <div class="sticker-face sticker-back">
-          <h3>${item.emoji} ${item.title}</h3>
-          <p>${item.blurb}</p>
-        </div>
-      </div>`;
-    el.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        el.classList.toggle("flipped");
-      }
-    });
-  }
+  el.innerHTML = `
+    <div class="sticker-inner">
+      <div class="sticker-face sticker-front">
+        <div class="sticker-emoji">${item.emoji}</div>
+        <p class="sticker-title">${item.title}</p>
+        <p class="sticker-sub">${item.blurb}</p>
+      </div>
+    </div>`;
   board.appendChild(el);
-  makeDraggable(el);
 });
-
-// Drag with a mouse; a click without moving flips the card (or opens its link).
-function makeDraggable(el) {
-  const canDrag = matchMedia("(pointer: fine)").matches;
-  let start = null;
-  let moved = false;
-  let offset = { x: 0, y: 0 };
-
-  el.addEventListener("pointerdown", (e) => {
-    if (!canDrag) return;
-    start = { x: e.clientX - offset.x, y: e.clientY - offset.y };
-    moved = false;
-    el.setPointerCapture(e.pointerId);
-  });
-
-  el.addEventListener("pointermove", (e) => {
-    if (!start) return;
-    const x = e.clientX - start.x;
-    const y = e.clientY - start.y;
-    if (!moved && Math.hypot(x - offset.x, y - offset.y) < 5) return;
-    moved = true;
-    el.classList.add("dragging");
-    offset = { x, y };
-    el.style.setProperty("--dx", `${x}px`);
-    el.style.setProperty("--dy", `${y}px`);
-  });
-
-  el.addEventListener("pointerup", () => {
-    start = null;
-    el.classList.remove("dragging");
-  });
-
-  el.addEventListener("click", (e) => {
-    if (moved) {
-      moved = false;
-      e.preventDefault();
-      return;
-    }
-    if (!el.href) el.classList.toggle("flipped");
-  });
-}
 
 // --- random facts ---
 const factEl = document.getElementById("fact");

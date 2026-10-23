@@ -9,15 +9,17 @@
 //               (leave it out and a placeholder tile shows instead)
 //       note    optional line of text shown when someone opens it
 //       link    optional — e.g. the NFT's marketplace page
+//       pixel   true for pixel art, so it stays crisp instead of blurry
 // ============================================================
 
 const ITEMS = [
-  { title: "Fursona ref sheet", type: "art", emoji: "🐾", note: "Replace this with your own piece!" },
-  { title: "Sketch dump",       type: "art", emoji: "✏️", note: "Doodles from the last few weeks." },
-  { title: "Genesis #001",      type: "nft", emoji: "💎", note: "My first mint.", link: "https://opensea.io" },
-  { title: "Night city",        type: "art", emoji: "🌃" },
-  { title: "Pixel pal",         type: "nft", emoji: "👾", note: "8-bit and proud." },
-  { title: "Color study",       type: "art", emoji: "🎨" },
+  { title: "#1918", type: "nft", image: "gallery/nft-1918.png", pixel: true },
+  { title: "#2493", type: "nft", image: "gallery/nft-2493.png", pixel: true },
+  { title: "#7579", type: "nft", image: "gallery/nft-7579.png", pixel: true },
+  { title: "#7120", type: "nft", image: "gallery/nft-7120.png", pixel: true },
+  { title: "#2820", type: "nft", image: "gallery/nft-2820.png", pixel: true },
+  { title: "Specs", type: "nft", image: "gallery/nft-specs.png", pixel: true },
+  { title: "#4487", type: "nft", image: "gallery/nft-4487.png", pixel: true },
 ];
 
 // ============================================================
@@ -28,7 +30,7 @@ const grid = document.getElementById("galleryGrid");
 const empty = document.getElementById("galleryEmpty");
 
 function media(item, i) {
-  if (item.image) return `<img src="${item.image}" alt="${item.title}" loading="lazy">`;
+  if (item.image) return `<img src="${item.image}" alt="${item.title}" loading="lazy"${item.pixel ? ' class="pixel"' : ""}>`;
   return `<div class="placeholder" style="--accent: ${PLACEHOLDER_COLORS[i % PLACEHOLDER_COLORS.length]}">${item.emoji || "🖼️"}</div>`;
 }
 
