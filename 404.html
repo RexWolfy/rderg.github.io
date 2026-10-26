@@ -8,21 +8,24 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <meta name="theme-color" content="#081230">
+  <meta name="theme-color" content="#07060c">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700;800&display=swap">
   <!-- 404 pages show up at any wrong address, so every link here starts with "/" -->
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/style.css?v=neon1">
 </head>
 <body>
   <main class="lost">
     <svg class="lost-guy" viewBox="0 -6 14 15" aria-hidden="true" shape-rendering="crispEdges">
-      <g class="lost-question">
+      <g class="lost-question" fill="#ffe23d">
         <rect x="10" y="-5" width="3" height="1" />
         <rect x="12" y="-4" width="1" height="1" />
         <rect x="11" y="-3" width="2" height="1" />
         <rect x="11" y="-2" width="1" height="1" />
         <rect x="11" y="0" width="1" height="1" />
       </g>
-      <g class="lost-body">
+      <g class="lost-body" fill="#d97757">
         <rect x="2" y="1" width="9" height="6" />
         <rect x="0" y="3" width="2" height="2" />
         <rect x="11" y="3" width="2" height="2" />
@@ -30,19 +33,19 @@
         <rect x="5" y="7" width="1" height="2" />
         <rect x="7" y="7" width="1" height="2" />
         <rect x="9" y="7" width="1" height="2" />
-        <rect class="walker-eye" x="5" y="3" width="1" height="2" />
-        <rect class="walker-eye" x="9" y="3" width="1" height="2" />
+        <rect class="walker-eye" fill="#07060c" x="5" y="3" width="1" height="2" />
+        <rect class="walker-eye" fill="#07060c" x="9" y="3" width="1" height="2" />
       </g>
     </svg>
 
-    <h1 class="hero-name lost-code" aria-label="404"><span>4</span><span>0</span><span>4</span></h1>
+    <h1 class="hero-name" aria-label="404"><span class="neon-c" aria-hidden="true">4</span><span class="neon-m flicker" aria-hidden="true">0</span><span class="neon-o" aria-hidden="true">4</span></h1>
     <p class="lost-text">this page doesn't exist.</p>
     <p class="section-hint">even claude couldn't vibe-code it into existence.</p>
-    <a class="hero-cta" href="/">take me home →</a>
+    <a class="btn btn-orange" href="/">take me home →</a>
   </main>
 
   <footer class="footer"></footer>
 
-  <script src="/site.js"></script>
+  <script src="/site.js?v=neon1"></script>
 </body>
 </html>

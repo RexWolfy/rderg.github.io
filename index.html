@@ -8,7 +8,7 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <meta name="theme-color" content="#081230">
+  <meta name="theme-color" content="#07060c">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="rderg">
   <meta property="og:title" content="rderg">
@@ -18,16 +18,31 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Monoton&family=Jost:wght@700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700;800&display=swap">
+  <!-- bump ?v= whenever these files change, so nobody gets a stale mix of old and new -->
+  <link rel="stylesheet" href="style.css?v=neon1">
 </head>
 <body>
-  <header class="hero">
-    <p class="hero-hi">yo whaddup 👋 i'm</p>
-    <h1 class="hero-name" id="heroName" aria-label="rderg">rderg</h1>
-    <p class="hero-tagline">
-      currently <span class="rotator" id="rotator">vibing</span>
-    </p>
-    <a class="hero-cta" href="#stuff">see what i'm into ↓</a>
+  <nav class="nav" aria-label="Main">
+    <a class="nav-logo neon-c" href="#top">rderg</a>
+    <div class="nav-links">
+      <a href="#list-music" data-open="music">music</a>
+      <a href="#list-coding" data-open="coding">coding</a>
+      <a href="#list-games" data-open="games">games</a>
+      <a href="#links">links</a>
+      <a class="nav-slot" href="#slots">[ 777 ]</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <canvas class="sky" id="sky" aria-hidden="true"></canvas>
+    <div class="hero-text" id="heroText">
+      <p class="hero-hi">yo whaddup, i'm</p>
+      <h1 class="hero-name" aria-label="rderg"><span class="neon-c" aria-hidden="true">r</span><span class="neon-o" aria-hidden="true">d</span><span class="neon-m flicker" aria-hidden="true">e</span><span class="neon-c" aria-hidden="true">r</span><span class="neon-o" aria-hidden="true">g</span></h1>
+      <p class="hero-tagline">currently <span class="rotator" id="rotator">vibing</span></p>
+    </div>
   </header>
 
   <div class="ticker-wrap" aria-hidden="true">
@@ -37,24 +52,97 @@
   </div>
 
   <main>
-    <section id="stuff" class="section">
-      <h2 class="section-title">stuff i'm into</h2>
-      <p class="section-hint">tap a sticker to check it out.</p>
-      <div class="board" id="board"></div>
+    <section class="section" id="into">
+      <p class="kicker cyan">// 01</p>
+      <h2 class="section-title">stuff i'm <span class="neon-c">into</span></h2>
+      <div class="lists" id="lists"></div>
+    </section>
+
+    <section class="section" id="slots">
+      <p class="kicker pink">// 02</p>
+      <h2 class="section-title">feeling <span class="neon-m">lucky?</span></h2>
+      <p class="section-hint">pull the lever. line up 7 · 7 · 7. no real money, just vibes.</p>
+
+      <div class="cabinet" id="cabinet">
+        <div class="cabinet-top">
+          <div class="lights" aria-hidden="true"></div>
+          <p class="cabinet-title neon-m">LUCKY 777</p>
+          <div class="lights" aria-hidden="true"></div>
+        </div>
+
+        <div class="machine">
+          <div class="reels">
+            <div class="reel"><div class="cell"></div><div class="cell"></div><div class="cell"></div></div>
+            <div class="reel"><div class="cell"></div><div class="cell"></div><div class="cell"></div></div>
+            <div class="reel"><div class="cell"></div><div class="cell"></div><div class="cell"></div></div>
+            <div class="payline"></div>
+          </div>
+          <button class="lever" id="lever" aria-label="Pull the lever">
+            <span class="socket"></span>
+            <span class="arm"><span class="stick"></span><span class="knob"></span></span>
+          </button>
+        </div>
+
+        <div class="cabinet-bottom">
+          <p class="slot-msg idle" id="slotMsg" aria-live="polite">line up 7 · 7 · 7 to win</p>
+          <button class="pull-btn" id="pullBtn">PULL</button>
+          <div class="chips">
+            <span class="chip">pulls <b id="pulls">0</b></span>
+            <span class="chip">jackpots <b id="jackpots">0</b></span>
+            <span class="chip">odds ≈ <b id="odds">1 in 23</b></span>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="section">
-      <h2 class="section-title">random fact machine</h2>
-      <div class="fact-box">
-        <p class="fact" id="fact">press the button. you know you want to.</p>
-        <button class="fact-btn" id="factBtn">gimme a fact 🎲</button>
+      <p class="kicker lime">// 03</p>
+      <h2 class="section-title">random fact <span class="neon-l">machine</span></h2>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot lime"></span>
+          <span class="terminal-name">fact_machine.exe</span>
+        </div>
+        <div class="terminal-body">
+          <p class="fact"><span class="neon-l">&gt; </span><span id="fact">press the button. you know you want to.</span><span class="cursor" aria-hidden="true"></span></p>
+          <button class="fact-btn" id="factBtn">gimme a fact</button>
+        </div>
       </div>
+    </section>
+
+    <section class="section" id="links">
+      <p class="kicker orange">// 04</p>
+      <h2 class="section-title">find me <span class="neon-o">online</span></h2>
+      <div class="link-list">
+        <a class="lt cyan" href="https://x.com/buntstiftt">
+          <span class="lt-icon" aria-hidden="true">X</span>
+          <span class="lt-main"><span class="lt-name">Twitter / X</span><span class="lt-handle">@buntstiftt</span></span>
+          <span class="lt-arrow" aria-hidden="true">↗</span>
+        </a>
+        <div class="lt pink">
+          <span class="lt-icon" aria-hidden="true">Ξ</span>
+          <span class="lt-main"><span class="lt-name">ENS</span><span class="lt-handle">rderg.eth</span></span>
+          <span class="lt-acts">
+            <a class="lt-act" href="https://app.ens.domains/rderg.eth">view ↗</a>
+            <button class="lt-act" id="copyEns" aria-label="Copy rderg.eth">copy</button>
+          </span>
+        </div>
+        <a class="lt lime" href="https://steamcommunity.com/id/rderg/">
+          <span class="lt-icon small" aria-hidden="true">[▶]</span>
+          <span class="lt-main"><span class="lt-name">Steam</span><span class="lt-handle">rderg · add me</span></span>
+          <span class="lt-arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <p class="sr-only" id="copyNote" aria-live="polite"></p>
     </section>
   </main>
 
   <footer class="footer" data-home></footer>
 
-  <script src="site.js"></script>
-  <script src="script.js"></script>
+  <div class="confetti-layer" id="confetti" aria-hidden="true" hidden></div>
+
+  <script src="site.js?v=neon1"></script>
+  <script src="dragons.js?v=neon1"></script>
+  <script src="script.js?v=neon1"></script>
 </body>
 </html>
