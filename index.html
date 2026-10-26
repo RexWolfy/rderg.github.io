@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Monoton&family=Jost:wght@700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700;800&display=swap">
   <!-- bump ?v= whenever these files change, so nobody gets a stale mix of old and new -->
-  <link rel="stylesheet" href="style.css?v=neon1">
+  <link rel="stylesheet" href="style.css?v=neon3">
 </head>
 <body>
   <nav class="nav" aria-label="Main">
@@ -32,7 +32,7 @@
       <a href="#list-coding" data-open="coding">coding</a>
       <a href="#list-games" data-open="games">games</a>
       <a href="#links">links</a>
-      <a class="nav-slot" href="#slots">[ 777 ]</a>
+      <a class="nav-slot" href="slots.html">[ 777 ]</a>
     </div>
   </nav>
 
@@ -42,6 +42,7 @@
       <p class="hero-hi">yo whaddup, i'm</p>
       <h1 class="hero-name" aria-label="rderg"><span class="neon-c" aria-hidden="true">r</span><span class="neon-o" aria-hidden="true">d</span><span class="neon-m flicker" aria-hidden="true">e</span><span class="neon-c" aria-hidden="true">r</span><span class="neon-o" aria-hidden="true">g</span></h1>
       <p class="hero-tagline">currently <span class="rotator" id="rotator">vibing</span></p>
+      <a class="lucky-btn" href="slots.html"><span class="lucky-777" aria-hidden="true">777</span> feeling lucky?</a>
     </div>
   </header>
 
@@ -58,45 +59,8 @@
       <div class="lists" id="lists"></div>
     </section>
 
-    <section class="section" id="slots">
-      <p class="kicker pink">// 02</p>
-      <h2 class="section-title">feeling <span class="neon-m">lucky?</span></h2>
-      <p class="section-hint">pull the lever. line up 7 · 7 · 7. no real money, just vibes.</p>
-
-      <div class="cabinet" id="cabinet">
-        <div class="cabinet-top">
-          <div class="lights" aria-hidden="true"></div>
-          <p class="cabinet-title neon-m">LUCKY 777</p>
-          <div class="lights" aria-hidden="true"></div>
-        </div>
-
-        <div class="machine">
-          <div class="reels">
-            <div class="reel"><div class="cell"></div><div class="cell"></div><div class="cell"></div></div>
-            <div class="reel"><div class="cell"></div><div class="cell"></div><div class="cell"></div></div>
-            <div class="reel"><div class="cell"></div><div class="cell"></div><div class="cell"></div></div>
-            <div class="payline"></div>
-          </div>
-          <button class="lever" id="lever" aria-label="Pull the lever">
-            <span class="socket"></span>
-            <span class="arm"><span class="stick"></span><span class="knob"></span></span>
-          </button>
-        </div>
-
-        <div class="cabinet-bottom">
-          <p class="slot-msg idle" id="slotMsg" aria-live="polite">line up 7 · 7 · 7 to win</p>
-          <button class="pull-btn" id="pullBtn">PULL</button>
-          <div class="chips">
-            <span class="chip">pulls <b id="pulls">0</b></span>
-            <span class="chip">jackpots <b id="jackpots">0</b></span>
-            <span class="chip">odds ≈ <b id="odds">1 in 23</b></span>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="section">
-      <p class="kicker lime">// 03</p>
+      <p class="kicker lime">// 02</p>
       <h2 class="section-title">random fact <span class="neon-l">machine</span></h2>
       <div class="terminal">
         <div class="terminal-bar">
@@ -111,7 +75,7 @@
     </section>
 
     <section class="section" id="links">
-      <p class="kicker orange">// 04</p>
+      <p class="kicker orange">// 03</p>
       <h2 class="section-title">find me <span class="neon-o">online</span></h2>
       <div class="link-list">
         <a class="lt cyan" href="https://x.com/buntstiftt">
@@ -139,10 +103,8 @@
 
   <footer class="footer" data-home></footer>
 
-  <div class="confetti-layer" id="confetti" aria-hidden="true" hidden></div>
-
-  <script src="site.js?v=neon1"></script>
-  <script src="dragons.js?v=neon1"></script>
-  <script src="script.js?v=neon1"></script>
+  <script src="site.js?v=neon3"></script>
+  <script src="dragons.js?v=neon3"></script>
+  <script src="script.js?v=neon3"></script>
 </body>
 </html>

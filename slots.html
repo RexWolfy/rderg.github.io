@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>rderg · lucky 777</title>
+  <meta name="description" content="A neon slot machine. Play money only. Don't mash the button.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#07060c">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="rderg">
+  <meta property="og:title" content="LUCKY 777 deluxe">
+  <meta property="og:description" content="A neon slot machine. Play money only. Don't mash the button.">
+  <meta property="og:url" content="https://rderg.com/slots">
+  <meta property="og:image" content="https://rderg.com/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Monoton&family=Jost:wght@700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700;800&display=swap">
+  <!-- bump ?v= whenever these files change, so nobody gets a stale mix of old and new -->
+  <link rel="stylesheet" href="/style.css?v=neon3">
+  <link rel="stylesheet" href="/slots.css?v=s7a">
+</head>
+<body>
+  <!-- everything that shakes when the machine blows up -->
+  <div class="s7-shake" id="shake">
+    <nav class="nav" aria-label="Main">
+      <a class="nav-logo neon-c" href="/">rderg</a>
+      <div class="nav-links">
+        <a href="/">home</a>
+        <button class="s7-sound" id="soundBtn" type="button" aria-pressed="true">♪ sound on</button>
+      </div>
+    </nav>
+
+    <main class="s7-main">
+      <header class="s7-head">
+        <h1 class="s7-title"><span class="neon-m">LUCKY</span> <span class="neon-o">777</span></h1>
+        <p class="s7-tagline neon-c">deluxe</p>
+        <p class="s7-hint">5 reels · 10 lines · play money only. the hotter the machine runs, the more it pays. too hot and it blows.</p>
+      </header>
+
+      <div class="s7-cabinet" id="cabinet">
+        <div class="s7-marquee">
+          <span class="s7-vent left" aria-hidden="true"></span>
+          <span class="s7-vent right" aria-hidden="true"></span>
+          <div class="s7-bulbs" aria-hidden="true"></div>
+          <p class="s7-sign" id="sign" aria-hidden="true"></p>
+          <div class="s7-bulbs" aria-hidden="true"></div>
+        </div>
+
+        <div class="s7-window" id="window">
+          <div class="s7-reel" style="--r: 0"></div>
+          <div class="s7-reel" style="--r: 1"></div>
+          <div class="s7-reel" style="--r: 2"></div>
+          <div class="s7-reel" style="--r: 3"></div>
+          <div class="s7-reel" style="--r: 4"></div>
+          <svg class="s7-paylines" id="paylines" aria-hidden="true"></svg>
+          <div class="s7-banner" id="banner" aria-hidden="true">
+            <p class="s7-banner-title" id="bannerTitle"></p>
+            <p class="s7-banner-amount" id="bannerAmount"></p>
+            <p class="s7-banner-bonus" id="bannerBonus"></p>
+          </div>
+          <svg class="s7-cracks" id="cracks" aria-hidden="true"></svg>
+        </div>
+
+        <p class="s7-led" id="led" aria-live="polite">press spin · or hit space</p>
+
+        <div class="s7-heat">
+          <span class="s7-label">core temp</span>
+          <div class="s7-heat-bar" id="heatBar" role="meter" aria-label="Machine temperature" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+          <span class="s7-temp"><b id="temp">20°C</b> <span id="heatStage">cool</span></span>
+          <b class="s7-bonus" id="bonus" title="every win is multiplied by this" aria-label="Wins pay 1 times">×1</b>
+        </div>
+
+        <div class="s7-controls">
+          <button class="s7-money" id="money" type="button" title="tap to buy more coins (free)">
+            <span class="s7-coin" aria-hidden="true"></span>
+            <span class="s7-money-text"><span class="s7-label">balance</span><b id="balance">1,000</b></span>
+            <span class="s7-buy" aria-hidden="true">+ buy</span>
+          </button>
+          <div class="s7-bet">
+            <button type="button" id="betDown" aria-label="Lower the bet">−</button>
+            <span class="s7-bet-text"><span class="s7-label">bet</span><b id="bet">10</b></span>
+            <button type="button" id="betUp" aria-label="Raise the bet">+</button>
+          </div>
+          <button class="s7-spin" id="spin" type="button"><span id="spinLabel">SPIN</span></button>
+          <button class="s7-auto" id="auto" type="button" aria-pressed="false">AUTO</button>
+        </div>
+
+        <div class="s7-tapes" id="tapes" aria-hidden="true"></div>
+      </div>
+
+      <div class="s7-rig" id="rig" hidden></div>
+
+      <section class="s7-info">
+        <div class="s7-stats" id="stats"></div>
+        <details class="s7-paytable">
+          <summary>paytable &amp; lines</summary>
+          <p class="s7-pay-note">wins pay left to right on any of the 10 lines. the little guy is <b class="neon-l">WILD</b> and stands in for anything. amounts are for your current bet at ×1.</p>
+          <p class="s7-pay-note">every press of spin heats the machine up, quick presses a lot more, and it cools off when you leave it alone. the hotter it is when you spin, the more the win pays: <b>warm ×2 · hot ×3 · critical ×5 · meltdown ×10</b>. let it hit 100 and it blows up, and the repair bill is 10 bets.</p>
+          <div class="s7-pays" id="pays"></div>
+          <div class="s7-lines" id="lines"></div>
+        </details>
+      </section>
+    </main>
+
+    <footer class="footer"></footer>
+  </div>
+
+  <canvas class="s7-fx" id="fx" aria-hidden="true"></canvas>
+  <div class="s7-pops" id="pops" aria-hidden="true"></div>
+  <div class="s7-flash" id="flash" aria-hidden="true"></div>
+  <p class="s7-toast" id="toast" role="status"></p>
+
+  <script src="/site.js?v=neon3"></script>
+  <script src="/slots.js?v=s7a"></script>
+</body>
+</html>

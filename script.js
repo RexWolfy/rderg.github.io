@@ -68,16 +68,11 @@ const GAMES = [
   { title: "Marathon",       steamId: 3065800 },
 ];
 
-// Chance that each slot reel lands on a 7 (0.35 → a jackpot about 1 in 23 pulls).
-const SLOT_LUCK = 0.35;
-
 // ============================================================
 //  The fun stuff below — no need to touch it.
 // ============================================================
 
-const pick = (xs) => xs[Math.floor(Math.random() * xs.length)];
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // --- rotating status ---
 const rotator = document.getElementById("rotator");
@@ -181,125 +176,6 @@ LISTS.forEach((l) => {
 document.querySelectorAll("[data-open]").forEach((link) => {
   link.addEventListener("click", () => setOpen(document.getElementById(`list-${link.dataset.open}`), true));
 });
-
-// --- slot machine ---
-const SYMBOLS = ["7", "★", "♦", "♣", "BAR", "@"];
-const SYMBOL_CLASS = { "7": "sym-7", "★": "sym-star", "♦": "sym-diamond", "♣": "sym-club", "BAR": "sym-bar", "@": "sym-at" };
-const QUIPS = [
-  "nothing. the house thanks you.",
-  "nope. pull again?",
-  "the dragons are laughing at you",
-  "try pulling with more conviction",
-  "rerolling destiny…",
-  "statistically, next one hits. (it does not)",
-];
-const NEON = ["#3df5ff", "#ff8a3d", "#ff3dbb", "#b6ff3d", "#ffe23d", "#ffffff"];
-
-const cabinet = document.getElementById("cabinet");
-const reels = [...cabinet.querySelectorAll(".reel")];
-const lever = document.getElementById("lever");
-const pullBtn = document.getElementById("pullBtn");
-const slotMsg = document.getElementById("slotMsg");
-const pullsEl = document.getElementById("pulls");
-const jackpotsEl = document.getElementById("jackpots");
-const confettiEl = document.getElementById("confetti");
-
-cabinet.querySelectorAll(".lights").forEach((row) => { row.innerHTML = '<span class="light"></span>'.repeat(13); });
-document.getElementById("odds").textContent = `1 in ${Math.max(1, Math.round(1 / SLOT_LUCK ** 3))}`;
-
-function showReel(reel, symbols) {
-  reel.querySelectorAll(".cell").forEach((cell, i) => {
-    cell.textContent = symbols[i];
-    cell.className = `cell ${i === 1 ? "mid" : "dim"} ${SYMBOL_CLASS[symbols[i]]}`;
-  });
-}
-const roll = () => (Math.random() < SLOT_LUCK ? "7" : pick(SYMBOLS.slice(1)));
-const randomReel = () => [pick(SYMBOLS), pick(SYMBOLS), pick(SYMBOLS)];
-
-// start one 7 short of a jackpot, as a tease
-showReel(reels[0], ["★", "7", "♦"]);
-showReel(reels[1], ["♣", "7", "@"]);
-showReel(reels[2], ["BAR", "♦", "7"]);
-
-let spinning = false;
-let pulls = 0;
-let jackpots = 0;
-let confettiTimer;
-
-function setMessage(text, kind) {
-  slotMsg.textContent = text;
-  slotMsg.className = `slot-msg ${kind}`;
-}
-
-function pull() {
-  if (spinning) return;
-  spinning = true;
-  const finals = [roll(), roll(), roll()];
-  const stopped = [false, false, false];
-
-  pullsEl.textContent = ++pulls;
-  setMessage("spinning…", "spin");
-  pullBtn.disabled = true;
-  pullBtn.textContent = "SPINNING…";
-  cabinet.classList.remove("win");
-  lever.classList.add("pulled");
-  setTimeout(() => lever.classList.remove("pulled"), 380);
-
-  reels.forEach((reel) => reel.classList.add("spinning"));
-  const blur = setInterval(() => {
-    reels.forEach((reel, i) => { if (!stopped[i]) showReel(reel, randomReel()); });
-  }, 70);
-
-  finals.forEach((symbol, i) => setTimeout(() => {
-    stopped[i] = true;
-    const others = SYMBOLS.filter((s) => s !== symbol);
-    showReel(reels[i], [pick(others), symbol, pick(others)]);
-    reels[i].classList.remove("spinning");
-    if (i === 2) {
-      clearInterval(blur);
-      settle(finals);
-    }
-  }, 900 + i * 520));
-}
-
-function settle(finals) {
-  spinning = false;
-  pullBtn.disabled = false;
-  pullBtn.textContent = "PULL";
-  const sevens = finals.filter((s) => s === "7").length;
-  if (sevens === 3) {
-    jackpotsEl.textContent = ++jackpots;
-    cabinet.classList.add("win");
-    setMessage("7 · 7 · 7 — JACKPOT!!! you absolute legend", "win");
-    celebrate();
-  } else if (finals[0] === finals[1] && finals[1] === finals[2]) {
-    setMessage(`triple ${finals[0]}! nice, but it's not 777`, "near");
-  } else if (sevens === 2) {
-    setMessage("two sevens… so close it hurts", "near");
-  } else {
-    setMessage(pick(QUIPS), "lose");
-  }
-}
-
-function celebrate() {
-  const pieces = reducedMotion ? "" : Array.from({ length: 170 }, (_, i) => {
-    const color = pick(NEON);
-    return `<span class="confetti fall${i % 4}" style="left:${(Math.random() * 100).toFixed(1)}%;`
-      + `width:${Math.round(6 + Math.random() * 8)}px;height:${Math.round(8 + Math.random() * 16)}px;`
-      + `background:${color};box-shadow:0 0 8px ${color};`
-      + `animation-duration:${(2.6 + Math.random() * 2.2).toFixed(2)}s;animation-delay:${(Math.random() * 1.1).toFixed(2)}s"></span>`;
-  }).join("");
-  confettiEl.innerHTML = `${pieces}<div class="jackpot-banner"><div class="jackpot-777">777</div><div class="jackpot-text">JACKPOT</div></div>`;
-  confettiEl.hidden = false;
-  clearTimeout(confettiTimer);
-  confettiTimer = setTimeout(() => {
-    confettiEl.hidden = true;
-    confettiEl.innerHTML = "";
-  }, 5600);
-}
-
-lever.addEventListener("click", pull);
-pullBtn.addEventListener("click", pull);
 
 // --- random facts ---
 const factEl = document.getElementById("fact");
